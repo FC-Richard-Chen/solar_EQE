@@ -20,7 +20,7 @@ def convert_spectrum(spectrum):
     lightSource[:, 0] = E / e #change the unit to eV
     return lightSource
 
-# claculate the energy above the energy gap
+# calculate the energy above the energy gap
 def photons_above_bandgap(egap, spectrum):
     """Counts number of photons above given bandgap (egap)"""
     indexes = np.where(spectrum[:, 0] > egap) # return the elements chosen
@@ -45,13 +45,13 @@ spectrum = pd.read_csv("ASTMG173.csv", header=0, dtype=float)  # nm vs W m^-2 nm
 # merge the two files
 df_new = pd.merge(spectrum, EQE)
 
-# muliplt the light source and QE number and convert the unit
+# multiply the light source and QE number and convert the unit
 df4 = df_new.iloc[:,1].mul(df_new.iloc[:,2])*0.01   # multiple EQE values; convert 1% to 0.01 
 
 # combine the result and fit into the wavelength
 df5 = pd.concat([df_new.iloc[:,0], df4], axis=1)
 
-# convert the spectrum to energy nuit
+# convert the spectrum to energy unit
 solarCell = convert_spectrum(df5)
 
 #calculate the photocurrent
