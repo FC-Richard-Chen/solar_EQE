@@ -35,6 +35,7 @@ def jsc(egap, spectrum):
 def photocurrent(spectrum):
     egap = spectrum[-1,0]
     current = jsc(egap, spectrum)
+    current = np.round(current, 4)
     result = "The photocurrent is " + str(current*0.1) + " " + "mAcm^-2"    # convert Am-2 to mA cm-2
     return result
 
